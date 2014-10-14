@@ -1,5 +1,13 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 after_success:
-  - 'gulp coverage'
+- gulp coverage
+deploy:
+  provider: npm
+  email: d2ltravisdeploy@d2l.com
+  api_key:
+    secure: TVc6M+7LW7dRMlkl1txa1RsO9AiuRLIar4Q48dZolewiRofh4jDyajQ1cDW0ZqchGsl1yA+tCK3JORoN5P5QMeIXX39Mdhgj/ZV1JO4+kz/fbaA8Ke3GDLkTQzMciDqR7HjrhzRJSDO+j8lC8M5ZGtqecsBrgCwqH2sCXoOjCJk=
+  on:
+    tags: true
+    all_branches: true
