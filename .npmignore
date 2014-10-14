@@ -4,4 +4,4 @@ spec
 .editorconfig
 .jshintrc
 .travis.yml
-gulpful.js
+gulpfile.js
