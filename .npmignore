@@ -1,0 +1,7 @@
+node_modules
+coverage
+spec
+.editorconfig
+.jshintrc
+.travis.yml
+gulpfile.js
