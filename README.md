@@ -1,6 +1,31 @@
-#Peanut Gallery [![Build status][ci-image]][ci-url] [![Coverage Status][coverage-image]][coverage-url]
+# Peanut Gallery [![Build status][ci-image]][ci-url] [![Coverage Status][coverage-image]][coverage-url]
 
-Simple API to comment on a commit in a Github repo.
+Peanut Gallery exposes a simple API which allows you to add comments on a commit in a Github repo.
+
+## Install
+
+```shell
+npm install peanut-gallery
+```
+
+## Usage
+
+```javascript
+var pg = require('peanut-gallery');
+
+pg.comment( options, 'my comment', function( err, response ) {
+  console.log( response.url );
+} );
+```
+
+Options:
+- repo_slug: owner/repo, defaults to environment variable `TRAVIS_REPO_SLUG`
+- commit_sha: SHA of the commit to comment on, defaults to environment variable `COMMIT_SHA`
+- token: [Github personal access token](https://github.com/blog/1509-personal-api-tokens), defaults to environment variable `GITHUB_TOKEN`
+
+The `response` parameter passed to your callback will contain the JSON
+response from Github's ["create a commit comment"](https://developer.github.com/v3/repos/comments/#create-a-commit-comment)
+API.
 
 ## Contributing
 

@@ -11,7 +11,9 @@
     "url": "https://github.com/Desire2Learn-Valence/peanut-gallery.git"
   },
   "keywords": [
-    "github"
+    "github",
+    "commit",
+    "comment"
   ],
   "author": "D2L Corporation",
   "license": "Apache 2.0",
