@@ -46,10 +46,10 @@ describe( 'comment', function() {
 
 	} );
 
-	it( 'should use "travis-ci" as default user agent', function( done ) {
+	it( 'should use "peanut-gallery" as default user agent', function( done ) {
 
 		scope
-			.matchHeader( 'User-Agent', 'travis-ci' )
+			.matchHeader( 'User-Agent', 'peanut-gallery' )
 			.post( defaultUrl )
 			.reply( 201, 'ok2' );
 
