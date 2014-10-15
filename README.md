@@ -1,4 +1,7 @@
-# Peanut Gallery [![Build status][ci-image]][ci-url] [![Coverage Status][coverage-image]][coverage-url]
+# Peanut Gallery
+[![NPM version][npm-image]][npm-url]
+[![Build status][ci-image]][ci-url]
+[![Coverage Status][coverage-image]][coverage-url]
 
 Peanut Gallery exposes a simple API which allows you to add comments on a commit in a Github repo.
 
@@ -34,6 +37,8 @@ API.
 This repository is configured with [EditorConfig](http://editorconfig.org) rules and
 contributions should make use of them.
 
+[npm-url]: https://npmjs.org/package/peanut-gallery
+[npm-image]: https://badge.fury.io/js/peanut-gallery.png
 [ci-image]: https://travis-ci.org/Desire2Learn-Valence/peanut-gallery.svg?branch=master
 [ci-url]: https://travis-ci.org/Desire2Learn-Valence/peanut-gallery
 [coverage-image]: https://coveralls.io/repos/Desire2Learn-Valence/peanut-gallery/badge.png?branch=master
