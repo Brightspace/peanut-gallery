@@ -38,9 +38,24 @@ describe( 'comment', function() {
 			.post( defaultUrl )
 			.reply( 201, 'ok1' );
 
-		pg.comment( undefined, null, function( err, val ) {
+		pg.comment( '', undefined, function( err, val ) {
 				expect( err ).toBeNull();
 				expect( val ).toBe('ok1');
+				done();
+			} );
+
+	} );
+
+	it( 'should use "travis-ci" as default user agent', function( done ) {
+
+		scope
+			.matchHeader( 'User-Agent', 'travis-ci' )
+			.post( defaultUrl )
+			.reply( 201, 'ok2' );
+
+		pg.comment( '', undefined, function( err, val ) {
+				expect( err ).toBeNull();
+				expect( val ).toBe('ok2');
 				done();
 			} );
 
@@ -57,11 +72,30 @@ describe( 'comment', function() {
 		scope
 			.matchHeader( 'Authorization', 'token ' + options.token )
 			.post( '/repos/' + options.repo_slug + '/commits/' + options.commit_sha + '/comments' )
-			.reply( 201, 'ok2' );
+			.reply( 201, 'ok3' );
 
-		pg.comment( options, null, function( err, val ) {
+		pg.comment( '', options, function( err, val ) {
 				expect( err ).toBeNull();
-				expect( val ).toBe('ok2');
+				expect( val ).toBe('ok3');
+				done();
+			} );
+
+	} );
+
+	it( 'should use options user-agent if specified', function( done ) {
+
+		var options = {
+				user_agent: 'myUserAgent'
+			};
+
+		scope
+			.matchHeader( 'User-Agent', 'myUserAgent' )
+			.post( defaultUrl )
+			.reply( 201, 'ok4' );
+
+		pg.comment( '', options, function( err, val ) {
+				expect( err ).toBeNull();
+				expect( val ).toBe('ok4');
 				done();
 			} );
 
@@ -69,7 +103,7 @@ describe( 'comment', function() {
 
 	it( 'should populate error callback if an error occurs', function( done ) {
 
-		pg.comment( undefined, null, function( err, val ) {
+		pg.comment( '', undefined, function( err, val ) {
 				expect( err ).not.toBeNull();
 				expect( val ).not.toBeDefined();
 				done();
@@ -83,7 +117,7 @@ describe( 'comment', function() {
 			.post( defaultUrl )
 			.reply( 200, 'oh no' );
 
-		pg.comment( undefined, null, function( err, val ) {
+		pg.comment( '', undefined, function( err, val ) {
 				expect( err ).toEqual( { statusCode: 200, body: 'oh no' } );
 				expect( val ).not.toBeDefined();
 				done();
@@ -97,7 +131,7 @@ describe( 'comment', function() {
 			.post( defaultUrl, { body: 'my message' } )
 			.reply( 201 );
 
-		pg.comment( undefined, 'my message', function( err, val ) {
+		pg.comment( 'my message', undefined, function( err, val ) {
 				expect( err ).toBeNull();
 				done();
 			} );
@@ -110,7 +144,7 @@ describe( 'comment', function() {
 			.post( defaultUrl )
 			.reply( 201, { foo: 'bar', this: 2 } );
 
-		pg.comment( undefined, null, function( err, val ) {
+		pg.comment( '', undefined, function( err, val ) {
 				expect( err ).toBeNull();
 				expect( val ).toEqual( { foo: 'bar', this: 2 } );
 				done();
