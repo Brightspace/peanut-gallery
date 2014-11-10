@@ -1,6 +1,6 @@
 {
   "name": "peanut-gallery",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple API to comment on a commit in a Github repo.",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Desire2Learn-Valence/peanut-gallery.git"
+    "url": "https://github.com/Brightspace/peanut-gallery.git"
   },
   "keywords": [
     "github",
@@ -16,11 +16,11 @@
     "comment"
   ],
   "author": "D2L Corporation",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Desire2Learn-Valence/peanut-gallery/issues"
+    "url": "https://github.com/Brightspace/peanut-gallery/issues"
   },
-  "homepage": "https://github.com/Desire2Learn-Valence/peanut-gallery",
+  "homepage": "https://github.com/Brightspace/peanut-gallery",
   "dependencies": {
     "request": "^2.45.0"
   },
