@@ -40,7 +40,7 @@ contributions should make use of them.
 
 [npm-url]: https://npmjs.org/package/peanut-gallery
 [npm-image]: https://badge.fury.io/js/peanut-gallery.png
-[ci-image]: https://travis-ci.org/Desire2Learn-Valence/peanut-gallery.svg?branch=master
-[ci-url]: https://travis-ci.org/Desire2Learn-Valence/peanut-gallery
-[coverage-image]: https://coveralls.io/repos/Desire2Learn-Valence/peanut-gallery/badge.png?branch=master
-[coverage-url]: https://coveralls.io/r/Desire2Learn-Valence/peanut-gallery?branch=master
+[ci-image]: https://travis-ci.org/Brightspace/peanut-gallery.svg?branch=master
+[ci-url]: https://travis-ci.org/Brightspace/peanut-gallery
+[coverage-image]: https://coveralls.io/repos/Brightspace/peanut-gallery/badge.png?branch=master
+[coverage-url]: https://coveralls.io/r/Brightspace/peanut-gallery?branch=master
