@@ -1,6 +1,6 @@
 {
   "name": "peanut-gallery",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Simple API to comment on a commit in a Github repo.",
   "main": "lib/index.js",
   "scripts": {
