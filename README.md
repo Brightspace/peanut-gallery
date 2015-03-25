@@ -23,7 +23,7 @@ pg.comment( 'my comment', options, function( err, response ) {
 
 Options:
 - repo_slug: owner/repo, defaults to environment variable `TRAVIS_REPO_SLUG`
-- commit_sha: SHA of the commit to comment on, defaults to environment variable `COMMIT_SHA`
+- commit_hash: hash of the commit to comment on, defaults to environment variable `TRAVIS_COMMIT`
 - token: [Github personal access token](https://github.com/blog/1509-personal-api-tokens), defaults to environment variable `GITHUB_TOKEN`
 - user_agent: used for [Github API calls](https://developer.github.com/v3/#user-agent-required), defaults to "travis-ci"
 

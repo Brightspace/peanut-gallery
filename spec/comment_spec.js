@@ -7,16 +7,16 @@ var pg = require('../'),
 
 describe( 'comment', function() {
 
-	var repo, sha, token, scope;
-	var defaultUrl = '/repos/defSlug/commits/defSha/comments';
+	var repo, hash, token, scope;
+	var defaultUrl = '/repos/defSlug/commits/defHash/comments';
 
 	beforeEach( function() {
 
 		repo = process.env.TRAVIS_REPO_SLUG;
-		sha = process.env.COMMIT_SHA;
+		hash = process.env.TRAVIS_COMMIT;
 		token = process.env.GITHUB_TOKEN;
 		process.env.TRAVIS_REPO_SLUG = 'defSlug';
-		process.env.COMMIT_SHA = 'defSha';
+		process.env.TRAVIS_COMMIT = 'defHash';
 		process.env.GITHUB_TOKEN = 'defToken';
 
 		scope = nock( 'https://api.github.com', { allowUnmocked: false } );
@@ -26,7 +26,7 @@ describe( 'comment', function() {
 	afterEach( function() {
 
 		process.env.TRAVIS_REPO_SLUG = repo;
-		process.env.COMMIT_SHA = sha;
+		process.env.TRAVIS_COMMIT = hash;
 		process.env.GITHUB_TOKEN = token;
 
 	} );
@@ -65,18 +65,18 @@ describe( 'comment', function() {
 
 		var options = {
 				repo_slug: 'mySlug',
-				commit_sha: 'mySha',
+				commit_hash: 'myHash',
 				token: 'myToken'
 			};
 
 		scope
 			.matchHeader( 'Authorization', 'token ' + options.token )
-			.post( '/repos/' + options.repo_slug + '/commits/' + options.commit_sha + '/comments' )
-			.reply( 201, 'ok3' );
+			.post( '/repos/' + options.repo_slug + '/commits/' + options.commit_hash + '/comments' )
+			.reply( 201, 'ok5' );
 
 		pg.comment( '', options, function( err, val ) {
 				expect( err ).toBeNull();
-				expect( val ).toBe('ok3');
+				expect( val ).toBe('ok5');
 				done();
 			} );
 
@@ -91,11 +91,11 @@ describe( 'comment', function() {
 		scope
 			.matchHeader( 'User-Agent', 'myUserAgent' )
 			.post( defaultUrl )
-			.reply( 201, 'ok4' );
+			.reply( 201, 'ok6' );
 
 		pg.comment( '', options, function( err, val ) {
 				expect( err ).toBeNull();
-				expect( val ).toBe('ok4');
+				expect( val ).toBe('ok6');
 				done();
 			} );
 
