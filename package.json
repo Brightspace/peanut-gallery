@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Simple API to comment on a commit in a Github repo.",
   "main": "lib/index.js",
+  "bin": "bin/peanut-gallery",
   "scripts": {
     "test": "gulp"
   },
@@ -22,7 +23,8 @@
   },
   "homepage": "https://github.com/Brightspace/peanut-gallery",
   "dependencies": {
-    "request": "^2.45.0"
+    "request": "^2.45.0",
+    "yargs": "^3.26.0"
   },
   "devDependencies": {
     "gulp": "^3.8.8",

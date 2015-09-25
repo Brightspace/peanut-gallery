@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var pg = require('../');
+
+var argv = require('yargs')
+	.usage('Usage: $0 [options] <message>')
+	.describe('r', 'Specify the repository slug')
+	.alias('r', 'repo')
+	.describe('c', 'Specify the commit to comment on')
+	.alias('c', 'commit')
+	.describe('t', 'Specify a GitHub authorization token')
+	.alias('t', 'token')
+	.demand(1)
+	.argv;
+
+pg.comment(argv[1], {
+	repo_slug: argv.r,
+	commit_hash: argv.c,
+	token: argv.t
+}, function (err) {
+	if (err) console.error(JSON.stringify(err));
+});
