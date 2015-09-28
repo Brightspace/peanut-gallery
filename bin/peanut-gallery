@@ -12,6 +12,8 @@ var argv = require('yargs')
 	.alias('c', 'commit')
 	.describe('t', 'Specify a GitHub authorization token')
 	.alias('t', 'token')
+	.help('h')
+	.alias('h', 'help')
 	.argv;
 
 function makeComment(comment) {
