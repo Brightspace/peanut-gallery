@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Brightspace/peanut-gallery",
   "dependencies": {
+    "concat-stream": "^1.5.0",
     "request": "^2.45.0",
     "yargs": "^3.26.0"
   },
