@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var pg = require('../');
+
+var argv = require('yargs')
+	.usage('Usage: $0 [options] <message>')
+	.describe('r', 'Specify the repository slug')
+	.alias('r', 'repo')
+	.describe('c', 'Specify the commit to comment on')
+	.alias('c', 'commit')
+	.describe('t', 'Specify a GitHub authorization token')
+	.alias('t', 'token')
+	.help('h')
+	.alias('h', 'help')
+	.argv;
+
+function makeComment(comment) {
+	pg.comment(comment, {
+		repo_slug: argv.r,
+		commit_hash: argv.c,
+		token: argv.t
+	}, function (err) {
+		if (err) console.error(JSON.stringify(err));
+	});
+}
+
+var commentArg = argv._[0];
+if (commentArg) {
+	makeComment(comment);
+} else {
+	process.stdin.pipe(require('concat-stream')({
+		encoding: 'string'
+	}, makeComment));
+}
