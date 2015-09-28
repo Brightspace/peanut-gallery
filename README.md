@@ -13,6 +13,29 @@ npm install peanut-gallery
 
 ## Usage
 
+### CLI
+
+```bash
+$ peanut-gallery --help
+Usage: bin/peanut-gallery [options] <message>
+
+Options:
+  -r, --repo    Specify the repository slug
+  -c, --commit  Specify the commit to comment on
+  -t, --token   Specify a GitHub authorization token
+  -h, --help    Show help                                              [boolean]
+```
+
+Peanut Gallery can be run directly from a script/terminal. It will follow the
+same defaults as the API described below. If `message` is provided, it will be
+used as the message body - otherwise a message will be read from stdin.
+
+#### Example
+
+`peanut-gallery -r Brightspace/peanut-gallery -c db0f0ad2ad40165086539365b68533bbca455616 -t "${GH_TOKEN}" "Looks Great!"`
+
+### API
+
 ```javascript
 var pg = require('peanut-gallery');
 
