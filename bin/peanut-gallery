@@ -28,7 +28,7 @@ function makeComment(comment) {
 
 var commentArg = argv._[0];
 if (commentArg) {
-	makeComment(comment);
+	makeComment(commentArg);
 } else {
 	process.stdin.pipe(require('concat-stream')({
 		encoding: 'string'
