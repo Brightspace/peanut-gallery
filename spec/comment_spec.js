@@ -3,11 +3,13 @@
 'use strict';
 
 var pg = require('../'),
-	nock = require('nock');
+	nock = require('nock'),
+	request = require('request'),
+	sinon = require('sinon');
 
 describe( 'comment', function() {
 
-	var repo, hash, token, scope;
+	var repo, hash, token, scope, pull_request;
 	var defaultUrl = '/repos/defSlug/commits/defHash/comments';
 
 	beforeEach( function() {
@@ -15,9 +17,11 @@ describe( 'comment', function() {
 		repo = process.env.TRAVIS_REPO_SLUG;
 		hash = process.env.TRAVIS_COMMIT;
 		token = process.env.GITHUB_TOKEN;
+		pull_request = process.env.TRAVIS_PULL_REQUEST;
 		process.env.TRAVIS_REPO_SLUG = 'defSlug';
 		process.env.TRAVIS_COMMIT = 'defHash';
 		process.env.GITHUB_TOKEN = 'defToken';
+		process.env.TRAVIS_PULL_REQUEST = 'false';
 
 		scope = nock( 'https://api.github.com', { allowUnmocked: false } );
 
@@ -28,6 +32,7 @@ describe( 'comment', function() {
 		process.env.TRAVIS_REPO_SLUG = repo;
 		process.env.TRAVIS_COMMIT = hash;
 		process.env.GITHUB_TOKEN = token;
+		process.env.TRAVIS_PULL_REQUEST = pull_request;
 
 	} );
 
@@ -152,4 +157,69 @@ describe( 'comment', function() {
 
 	} );
 
+	it( 'should not be posted on a pull request when specified not to comment on pull requests', function() {
+
+		process.env.TRAVIS_PULL_REQUEST = '7';
+
+		var options = {
+			pull_request: false
+		};
+
+		var requestSpy = sinon.spy(request, 'post');
+
+		pg.comment( '', options, function() { } );
+
+		sinon.assert.notCalled( requestSpy );
+		requestSpy.restore();
+
+	} );
+
+	it( 'should be posted on a pull request when specified to comment on pull requests', function( done ) {
+
+		process.env.TRAVIS_PULL_REQUEST = '8';
+
+		var options = {
+			pull_request: true
+		};
+
+		var requestSpy = sinon.spy(request, 'post');
+
+		pg.comment( '', options, function( ) {
+			done();
+		} );
+
+		sinon.assert.calledOnce( requestSpy );
+		requestSpy.restore();
+
+	} );
+
+	it( 'should be posted on master by default', function( done ) {
+		var requestSpy = sinon.spy(request, 'post');
+
+		var options = {};
+
+		pg.comment( '', options, function( ) {
+			done();
+		} );
+
+		sinon.assert.calledOnce( requestSpy );
+		requestSpy.restore();
+
+	} );
+
+	it( 'should be posted on a master by even if it should not on a pull request', function( done ) {
+		var requestSpy = sinon.spy(request, 'post');
+
+		var options = {
+			pull_request: false
+		};
+
+		pg.comment( '', options, function( ) {
+			done();
+		} );
+
+		sinon.assert.calledOnce( requestSpy );
+		requestSpy.restore();
+
+	} );
 } );
