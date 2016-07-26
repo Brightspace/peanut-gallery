@@ -16,6 +16,9 @@ var argv = require('yargs')
 	.boolean('p')
 	.default('p', true)
 	.alias('p', 'pullrequest')
+	.describe('m', 'Specify which branch is your master branch. Set to "master" by default')
+	.default('m', 'master')
+	.alias('m', 'masterbranch')
 	.help('h')
 	.alias('h', 'help')
 	.argv;
@@ -25,7 +28,8 @@ function makeComment(comment) {
 		repo_slug: argv.r,
 		commit_hash: argv.c,
 		token: argv.t,
-		pull_request: argv.p
+		pull_request: argv.p,
+		master_branch: argv.m
 	}, function (err) {
 		if (err) console.error(JSON.stringify(err));
 	});

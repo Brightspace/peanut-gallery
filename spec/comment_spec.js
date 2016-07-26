@@ -9,7 +9,7 @@ var pg = require('../'),
 
 describe( 'comment', function() {
 
-	var repo, hash, token, scope, pull_request;
+	var repo, hash, token, scope, pull_request, branch;
 	var defaultUrl = '/repos/defSlug/commits/defHash/comments';
 
 	beforeEach( function() {
@@ -18,10 +18,13 @@ describe( 'comment', function() {
 		hash = process.env.TRAVIS_COMMIT;
 		token = process.env.GITHUB_TOKEN;
 		pull_request = process.env.TRAVIS_PULL_REQUEST;
+		branch = process.env.TRAVIS_BRANCH;
+
 		process.env.TRAVIS_REPO_SLUG = 'defSlug';
 		process.env.TRAVIS_COMMIT = 'defHash';
 		process.env.GITHUB_TOKEN = 'defToken';
 		process.env.TRAVIS_PULL_REQUEST = 'false';
+		process.env.TRAVIS_BRANCH = 'master';
 
 		scope = nock( 'https://api.github.com', { allowUnmocked: false } );
 
@@ -33,6 +36,7 @@ describe( 'comment', function() {
 		process.env.TRAVIS_COMMIT = hash;
 		process.env.GITHUB_TOKEN = token;
 		process.env.TRAVIS_PULL_REQUEST = pull_request;
+		process.env.TRAVIS_BRANCH = branch;
 
 	} );
 
@@ -174,6 +178,23 @@ describe( 'comment', function() {
 
 	} );
 
+	it( 'should not be posted on a pull request when branch is not on master', function() {
+
+		process.env.TRAVIS_BRANCH = 'notMaster';
+
+		var options = {
+			pull_request: false
+		};
+
+		var requestSpy = sinon.spy(request, 'post');
+
+		pg.comment( '', options, function() { } );
+
+		sinon.assert.notCalled( requestSpy );
+		requestSpy.restore();
+
+	} );
+
 	it( 'should be posted on a pull request when specified to comment on pull requests', function( done ) {
 
 		process.env.TRAVIS_PULL_REQUEST = '8';
@@ -193,10 +214,15 @@ describe( 'comment', function() {
 
 	} );
 
-	it( 'should be posted on master by default', function( done ) {
+	it( 'should be posted on master branch by default', function( done ) {
+
+		process.env.TRAVIS_BRANCH = 'testAlternateMaster';
+
 		var requestSpy = sinon.spy(request, 'post');
 
-		var options = {};
+		var options = {
+			master_branch: 'testAlternateMaster'
+		};
 
 		pg.comment( '', options, function( ) {
 			done();
