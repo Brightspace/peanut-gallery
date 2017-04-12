@@ -12,6 +12,8 @@ var argv = require('yargs')
 	.alias('c', 'commit')
 	.describe('t', 'Specify a GitHub authorization token')
 	.alias('t', 'token')
+	.describe('i', 'put comment on the issue/pull request level instead of commit level')
+	.alias('i', 'issue')
 	.help('h')
 	.alias('h', 'help')
 	.argv;
@@ -20,7 +22,8 @@ function makeComment(comment) {
 	pg.comment(comment, {
 		repo_slug: argv.r,
 		commit_hash: argv.c,
-		token: argv.t
+		token: argv.t,
+		comment_on_issue: argv.i
 	}, function (err) {
 		if (err) console.error(JSON.stringify(err));
 	});
