@@ -7,7 +7,7 @@ deploy:
   provider: npm
   email: d2ltravisdeploy@d2l.com
   api_key:
-    secure: TVc6M+7LW7dRMlkl1txa1RsO9AiuRLIar4Q48dZolewiRofh4jDyajQ1cDW0ZqchGsl1yA+tCK3JORoN5P5QMeIXX39Mdhgj/ZV1JO4+kz/fbaA8Ke3GDLkTQzMciDqR7HjrhzRJSDO+j8lC8M5ZGtqecsBrgCwqH2sCXoOjCJk=
+    secure: MBTEIsl/6LlTz6F4PCgBxYUtKt9w1adIYmLRRfebVJN0RvBHjhOv0CpuZTBz/2h6a1+q3yMIqJz5l7wACVMxW9SaC1pvtCj0q0IjW+M3EUvoz8+DHfckC4JvTuf7msFzkiRnW7ivB+z65u0tOSvjT0eYPacRVNVEeXIsevrKWME=
   on:
     tags: true
-    all_branches: true
+    repo: Brightspace/peanut-gallery
