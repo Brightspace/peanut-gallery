@@ -20,10 +20,11 @@ $ peanut-gallery --help
 Usage: bin/peanut-gallery [options] <message>
 
 Options:
-  -r, --repo    Specify the repository slug
-  -c, --commit  Specify the commit to comment on
-  -t, --token   Specify a GitHub authorization token
-  -h, --help    Show help                                              [boolean]
+  -r, --repo         Specify the repository slug
+  -c, --commit       Specify the commit to comment on
+  -t, --token        Specify a GitHub authorization token
+  -p, --pullrequest  Comment on the pull request instead of the commit
+  -h, --help         Show help                                         [boolean]
 ```
 
 Peanut Gallery can be run directly from a script/terminal. It will follow the
@@ -49,6 +50,7 @@ Options:
 - commit_hash: hash of the commit to comment on, defaults to environment variable `TRAVIS_COMMIT`
 - token: [Github personal access token](https://github.com/blog/1509-personal-api-tokens), defaults to environment variable `GITHUB_TOKEN`
 - user_agent: used for [Github API calls](https://developer.github.com/v3/#user-agent-required), defaults to "travis-ci"
+- comment_on_pull_request: comment on pull request instead of commit, defaults to `false`
 
 The `response` parameter passed to your callback will contain the JSON
 response from Github's ["create a commit comment"](https://developer.github.com/v3/repos/comments/#create-a-commit-comment)
