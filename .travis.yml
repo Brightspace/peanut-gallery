@@ -1,13 +1,14 @@
 language: node_js
 node_js:
-- '0.10'
+  - '0.10'
 after_success:
-- gulp coverage
+  - gulp coverage
 deploy:
   provider: npm
   email: d2ltravisdeploy@d2l.com
   api_key:
-    secure: MBTEIsl/6LlTz6F4PCgBxYUtKt9w1adIYmLRRfebVJN0RvBHjhOv0CpuZTBz/2h6a1+q3yMIqJz5l7wACVMxW9SaC1pvtCj0q0IjW+M3EUvoz8+DHfckC4JvTuf7msFzkiRnW7ivB+z65u0tOSvjT0eYPacRVNVEeXIsevrKWME=
+    # d2l-travis-deploy: 15fc......c033
+    secure: Z7eTZNrxzcMJM2UgVghKA/7xVIRg9mFjckHqeFwg209hT3+LAEDaYkxBPNTeyV/tO96R/BTTMFSXiDbLhbSID1cFwZvW9zL23ZkvS90Yw/m2WDUnVAJ5ZJ6qG9CT6MtwjMa8ZREZlzL7ambBW9FgYl9w9NVi/VjiVLt6b6VkuFA=
   on:
     tags: true
     repo: Brightspace/peanut-gallery
